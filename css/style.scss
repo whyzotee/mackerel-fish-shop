@@ -24,6 +24,7 @@ $btnColor: #55cbcd;
   border-radius: $b-radius;
   border: 1px solid $col1;
 
+
   &:hover {
     background-color: transparent;
     color: $col1;
@@ -336,7 +337,7 @@ a:focus {
     }
 
     a {
-      @include hero_btn(#1d1e31, $white, 10px, 60px, 0);
+      @include hero_btn(#1d1e31, $white, 10px, 60px, 20px);
       text-transform: uppercase;
       margin-top: 35px;
     }
@@ -453,7 +454,7 @@ a:focus {
   }
 
   a {
-    @include hero_btn($btnColor, $white, 10px, 40px, 0);
+    @include hero_btn($btnColor, $white, 10px, 40px, 20px);
   }
 }
 
@@ -507,12 +508,12 @@ a:focus {
   }
 
   .btn-1 {
-    @include hero_btn($btnColor, $white, 10px, 40px, 0);
+    @include hero_btn($btnColor, $white, 10px, 40px, 20px);
     margin-top: 25px;
   }
 
   .btn-2 {
-    @include hero_btn(#323559, $white, 10px, 40px, 0);
+    @include hero_btn(#323559, $white, 10px, 40px, 20px);
     margin-top: 25px;
   }
 
@@ -561,7 +562,7 @@ a:focus {
       justify-content: flex-end;
 
       a {
-        @include hero_btn($btnColor, $white, 10px, 40px, 0);
+        @include hero_btn($btnColor, $white, 10px, 40px, 20px);
       }
     }
   }
@@ -637,7 +638,7 @@ a:focus {
     }
 
     a {
-      @include hero_btn($btnColor, $white, 10px, 40px, 0);
+      @include hero_btn($btnColor, $white, 10px, 40px, 20px);
     }
   }
 }

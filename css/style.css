@@ -269,7 +269,7 @@ a:focus {
   padding: 10px 60px;
   background-color: #1d1e31;
   color: #fefdfc;
-  border-radius: 0;
+  border-radius: 20px;
   border: 1px solid #1d1e31;
   text-transform: uppercase;
   margin-top: 35px;
@@ -366,7 +366,7 @@ a:focus {
   padding: 10px 40px;
   background-color: #55cbcd;
   color: #fefdfc;
-  border-radius: 0;
+  border-radius: 20px;
   border: 1px solid #55cbcd;
 }
 .feature_section a:hover {
@@ -415,7 +415,7 @@ a:focus {
   padding: 10px 40px;
   background-color: #55cbcd;
   color: #fefdfc;
-  border-radius: 0;
+  border-radius: 20px;
   border: 1px solid #55cbcd;
   margin-top: 25px;
 }
@@ -428,7 +428,7 @@ a:focus {
   padding: 10px 40px;
   background-color: #323559;
   color: #fefdfc;
-  border-radius: 0;
+  border-radius: 20px;
   border: 1px solid #323559;
   margin-top: 25px;
 }
@@ -478,7 +478,7 @@ a:focus {
   padding: 10px 40px;
   background-color: #55cbcd;
   color: #fefdfc;
-  border-radius: 0;
+  border-radius: 20px;
   border: 1px solid #55cbcd;
 }
 .about_section .detail-box.b-1 a:hover {
@@ -544,7 +544,7 @@ a:focus {
   padding: 10px 40px;
   background-color: #55cbcd;
   color: #fefdfc;
-  border-radius: 0;
+  border-radius: 20px;
   border: 1px solid #55cbcd;
 }
 .client_section .client_container a:hover {
