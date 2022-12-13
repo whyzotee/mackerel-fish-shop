@@ -73,7 +73,7 @@
     }
 
     .about_section {
-        background-image: linear-gradient(rgba(255, 255, 255, .8), rgba(255, 255, 255, .8)), url("../images/about-bg.jpg");
+        background-image: linear-gradient(rgba(255, 255, 255, .8), rgba(255, 255, 255, .8)), url("../images/about-bg.png");
     }
 
     .about_section .detail-box {
