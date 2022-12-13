@@ -447,10 +447,19 @@ a:focus {
 
 .about_section {
   color: white;
+  position: relative;
   background-image: url(../images/about-bg.png);
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
+}
+.about_section .bg {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  opacity: 0.4;
 }
 .about_section .row {
   justify-content: space-between;
@@ -513,7 +522,7 @@ a:focus {
   display: flex;
 }
 .client_section .client_container .client-id .img-box {
-  width: 75px;
+  width: 90px;
   margin-right: 15px;
 }
 .client_section .client_container .client-id .img-box img {

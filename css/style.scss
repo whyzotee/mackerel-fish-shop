@@ -532,10 +532,20 @@ a:focus {
 // about section
 .about_section {
   color: white;
+  position: relative;
   background-image: url(../images/about-bg.png);
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
+
+  .bg {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    opacity: 0.4;
+  }
 
   .row {
     justify-content: space-between;
@@ -601,13 +611,11 @@ a:focus {
       display: flex;
 
       .img-box {
-        width: 75px;
+        width: 90px;
         margin-right: 15px;
 
         img {
           width: 100%;
-
-
         }
       }
 
