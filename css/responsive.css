@@ -31,6 +31,10 @@
 }
 
 @media (max-width: 768px) {
+    .navbar-brand span {
+        font-size: 18px;
+    }
+
     .hero_area {
         background: linear-gradient(to bottom, #f2f7fd 50%, #1d1e31 45%);
     }
