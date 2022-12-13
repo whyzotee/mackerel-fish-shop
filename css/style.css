@@ -382,6 +382,7 @@ a:focus {
   padding: 15px;
   margin: 45px 0;
   color: #fefdfc;
+  border-radius: 20px;
 }
 .download_section .box .head-box {
   display: flex;
@@ -391,13 +392,12 @@ a:focus {
   margin-right: 15px;
   width: 60px;
   height: 60px;
-  border: 1px solid #fefdfc;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .download_section .box .head-box .img-box img {
-  width: 30px;
+  width: 100%;
 }
 .download_section .box .head-box h6 {
   font-weight: bold;
