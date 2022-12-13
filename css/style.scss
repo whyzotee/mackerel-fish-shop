@@ -1,7 +1,7 @@
 $white: #fefdfc;
-$black: #050505;
-$colorPrimary: #8547ca;
-$btnColor: #8c60bd;
+$black: #303030;
+$colorPrimary: #55cbcd;
+$btnColor: #55cbcd;
 
 @mixin main-font {
   font-family: 'Raleway', sans-serif;
@@ -182,8 +182,6 @@ body {
   }
 }
 
-
-
 .overlay {
   height: 100%;
   width: 0;
@@ -226,7 +224,6 @@ body {
 .menu_width {
   width: 100%;
 }
-
 
 
 a,
@@ -273,7 +270,7 @@ a:focus {
   text-transform: uppercase;
   font-size: 24px;
   font-weight: 700;
-  color: #8547ca;
+  color: #55cbcd;
   margin-top: 5px;
 
 }
@@ -392,7 +389,7 @@ a:focus {
       opacity: 1;
 
       &.active {
-        background-color: #8547ca;
+        background-color: #55cbcd;
       }
     }
   }
@@ -534,7 +531,8 @@ a:focus {
 
 // about section
 .about_section {
-  background-image: url(../images/about-bg.jpg);
+  color: white;
+  background-image: url(../images/about-bg.png);
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
