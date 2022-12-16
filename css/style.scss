@@ -815,3 +815,40 @@ a:focus {
 }
 
 // end footer section
+
+/* Login section*/
+.login_section {
+  height: 95vh;
+
+
+
+  .container {
+    margin-top: 6rem;
+    padding: 5rem;
+    border: 10px solid #343a40;
+    border-radius: 2rem;
+
+    .content {
+      display: flex;
+
+      .login_form {
+        position: relative;
+        width: 50%;
+
+        button {
+          position: absolute;
+          bottom: 0;
+        }
+      }
+
+      .register_form {
+        width: 50%;
+        align-items: right;
+
+        button {}
+      }
+    }
+  }
+}
+
+// end Login section

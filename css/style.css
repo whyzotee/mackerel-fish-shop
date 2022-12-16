@@ -701,4 +701,30 @@ a:focus {
 
 .footer_section a {
   color: #fefdfc;
+}
+
+/* Login section*/
+.login_section {
+  height: 95vh;
+}
+.login_section .container {
+  margin-top: 6rem;
+  padding: 5rem;
+  border: 10px solid #343a40;
+  border-radius: 2rem;
+}
+.login_section .container .content {
+  display: flex;
+}
+.login_section .container .content .login_form {
+  position: relative;
+  width: 50%;
+}
+.login_section .container .content .login_form button {
+  position: absolute;
+  bottom: 0;
+}
+.login_section .container .content .register_form {
+  width: 50%;
+  align-items: right;
 }/*# sourceMappingURL=style.css.map */
