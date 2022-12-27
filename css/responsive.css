@@ -9,6 +9,10 @@
     .slider_section .detail-box h1 {
         font-size: 4.5rem;
     }
+
+    .main-img-box {
+        margin-top: 30%;
+    }
 }
 
 @media (max-width: 992px) {
@@ -27,6 +31,10 @@
 
     .slider_section .carousel-control-next {
         bottom: 75px;
+    }
+
+    .main-img-box {
+        margin-top: 100%;
     }
 }
 
@@ -97,6 +105,7 @@
     .contact_img-box {
         margin-top: 45px;
     }
+
 }
 
 @media (max-width: 576px) {
