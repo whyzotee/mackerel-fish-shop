@@ -706,9 +706,10 @@ a:focus {
 /* Login section*/
 .login_section {
   height: 95vh;
+  margin-top: 6rem;
+  margin-bottom: 6rem;
 }
 .login_section .container {
-  margin-top: 6rem;
   padding: 5rem;
   border: 10px solid #343a40;
   border-radius: 2rem;
