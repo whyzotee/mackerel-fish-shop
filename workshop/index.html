@@ -10,43 +10,75 @@
 
     <title>Workshop</title>
     <link rel="stylesheet" href="../css/bootstrap.css">
+    <style>
+        body {
+            margin: 3rem;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+
+        .group-test {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                display: block;
+            }
+
+            .title {
+                text-align: center;
+            }
+
+            .group-test {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
 
-<body style="margin: 3rem; display: flex; flex-direction: row; flex-wrap: wrap;">
-    <div>
+<body>
+    <div class="title">
         <h1>List of บทเรียน</h1>
-        <img src="https://media.tenor.com/P-8ZvqnS4AwAAAAM/dancing-cat-dancing-kitten.gif" alt="cat_dance" height="200">
+        <img src="https://media.tenor.com/P-8ZvqnS4AwAAAAM/dancing-cat-dancing-kitten.gif" alt="cat_dance" height="200"
+            style="border-radius: 50%;">
     </div>
-    <div style="margin-top: 3rem; margin-left: 5rem;">
-        <h5>สป.10</h5>
-        <br />
-        <ul>
-            <li><a href="./sampal.html" class="btn btn-outline-dark">sampal.html</a></li>
+    <div class="group-test">
+        <div class="first_test" style="margin-top: 3rem; margin-left: 3rem;">
+            <h5>สัปดาห์ที่ 10</h5>
             <br />
-            <li><a href="./tagH.html" class="btn btn-outline-dark">tagH.html</a></li>
+            <ul>
+                <li><a href="./sampal.html" class="btn btn-outline-dark">sampal.html</a></li>
+                <br />
+                <li><a href="./tagH.html" class="btn btn-outline-dark">tagH.html</a></li>
+                <br />
+                <li><a href="./1_Structuring/" class="btn btn-outline-dark">ใบงานที่ 1 (Structuring)</a></li>
+            </ul>
+        </div>
+        <div style="margin-top: 3rem; margin-left: 3rem;">
+            <h5>สัปดาห์ที่ 11</h5>
             <br />
-            <li><a href="./1_Structuring/" class="btn btn-outline-dark">ใบงานที่ 1 (Structuring)</a></li>
-        </ul>
-    </div>
-    <div style="margin-top: 3rem; margin-left: 3rem;">
-        <h5>สป.11</h5>
-        <br />
-        <ul>
-            <li><a href="./2_Links_Navigation/" class="btn btn-outline-dark">ใบงานที่ 2 (Links_Navigation)</a></li>
+            <ul>
+                <li><a href="./2_Links_Navigation/" class="btn btn-outline-dark">ใบงานที่ 2 (Links_Navigation)</a></li>
+                <br />
+                <li><a href="./3_Images_Audio_Video/" class="btn btn-outline-dark">ใบงานที่ 3 (Images_Audio_Video)</a>
+                </li>
+            </ul>
+        </div>
+        <div style="margin-top: 3rem; margin-left: 3rem;">
+            <h5>สัปดาห์ที่ 12</h5>
             <br />
-            <li><a href="./3_Images_Audio_Video/" class="btn btn-outline-dark">ใบงานที่ 3 (Images_Audio_Video)</a></li>
-        </ul>
-    </div>
-    <div style="margin-top: 3rem; margin-left: 3rem;">
-        <h5>สป.12</h5>
-        <br />
-        <ul>
-            <li><a href="./4_Tables/" class="btn btn-outline-dark">ใบงานที่ 4 (Tables)</a></li>
-            <br />
-            <li><a href="./5_Forms/" class="btn btn-outline-dark">ใบงานที่ 5 (Forms)</a></li>
-            <br />
-            <li><a href="./6_Frames/" class="btn btn-outline-dark">ใบงานที่ 6 (Frames)</a></li>
-        </ul>
+            <ul>
+                <li><a href="./4_Tables/" class="btn btn-outline-dark">ใบงานที่ 4 (Tables)</a></li>
+                <br />
+                <li><a href="./5_Forms/" class="btn btn-outline-dark">ใบงานที่ 5 (Forms)</a></li>
+                <br />
+                <li><a href="./6_Frames/" class="btn btn-outline-dark">ใบงานที่ 6 (Frames)</a></li>
+            </ul>
+        </div>
     </div>
 </body>
 
