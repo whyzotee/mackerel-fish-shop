@@ -1,8 +1,13 @@
+"use client";
+
 import Image from "next/image";
 import { Button } from "@nextui-org/react";
+import { useRouter } from "next/navigation";
 import { basePath } from "./core/settings";
 
 export default function Page() {
+  const router = useRouter();
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between bg-[#252525]">
       <div className="relative h-screen w-full">
@@ -21,7 +26,12 @@ export default function Page() {
               สินค้าหมดชั่วคราว!!!
             </Button>
             <span className="text-white text-xl">แต่ตอนนี้มี</span>
-            <Button color="success" size="lg" variant="ghost">
+            <Button
+              color="success"
+              size="lg"
+              variant="ghost"
+              onClick={() => router.push("/pages/sticker_line_shop")}
+            >
               สติ๊กเกอร์ไลน์
             </Button>
             <span className="text-white text-xl">ขายอยู่นะ!!</span>

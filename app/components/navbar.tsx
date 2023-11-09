@@ -33,6 +33,9 @@ export default function Navbar() {
           </button>
           {/* <Link href="/pages/docs">ใบความรู้</Link> */}
           <button onClick={() => router.push("/pages/docs")}>ใบความรู้</button>
+          <button onClick={() => router.push("/pages/sticker_line_shop")}>
+            ซื้อสติ๊กเกอร์ไลน์
+          </button>
         </div>
       </div>
     </nav>
