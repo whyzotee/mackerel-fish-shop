@@ -40,7 +40,7 @@ export default function Register() {
       if (response.ok) {
         Swal.fire({
           title: "สำเร็จ",
-          text: "เข้าสู่ระบบเสร็จสิ้น กด ตลลง เพื่อดำเนินการต่อ",
+          text: "สมัครสมาชิกเสร็จสิ้น กด ตลลง เพื่อดำเนินการต่อ",
           icon: "success",
           confirmButtonText: "ตลลง",
           confirmButtonColor: "#5CD1FF",
