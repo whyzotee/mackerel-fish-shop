@@ -2,6 +2,7 @@
 	require_once('config.php');
 
 	if (!$conn) {
+		header("Status: 404 Not Found");
   		die("ไม่สามารถเชื่อมต่อฐานข้อมูลได้ " . mysqli_connect_error());
 	}
 
