@@ -3,6 +3,7 @@ import { Button } from "@nextui-org/react";
 import { FormEvent, useState } from "react";
 import { basePath } from "@/app/core/settings";
 import Swal from "sweetalert2";
+import { useRouter } from "next/navigation";
 
 export default function Register() {
   const [userData, setUserData] = useState({
@@ -13,18 +14,27 @@ export default function Register() {
     email: "",
     status: "CUSTOMER"
   })
-  const [conPass, setConPass] = useState("")
+  const [conPass, setConPass] = useState("");
+
+  const router = useRouter();
 
   const onSubmit = async (event: FormEvent) => {
-    if (conPass !== userData.password) {
-      console.log(conPass);
-      console.log(userData.password);
+    try {
+      Object.values(userData).forEach((element) => {
+        if (element == "") throw new Error("Break the loop.")
+      });
+    } catch (error) {
+      return console.log(error);
+    }
 
+    if (conPass == "") return;
+
+    if (conPass !== userData.password) {
       return Swal.fire({
         title: "ล้มเหลว",
         text: "รหัสผ่านไม่ตรงกัน",
         icon: "error",
-        confirmButtonText: "ตลลง",
+        confirmButtonText: "ตกลง",
       });
     }
 
@@ -37,21 +47,26 @@ export default function Register() {
         body: JSON.stringify(userData),
       });
 
+      console.log(response.body);
+
       if (response.ok) {
         Swal.fire({
           title: "สำเร็จ",
-          text: "สมัครสมาชิกเสร็จสิ้น กด ตลลง เพื่อดำเนินการต่อ",
+          text: "เข้าสู่ระบบเสร็จสิ้น กด ตกลง เพื่อดำเนินการต่อ",
           icon: "success",
-          confirmButtonText: "ตลลง",
+          confirmButtonText: "ตกลง",
           confirmButtonColor: "#5CD1FF",
+        }).then((_) => {
+          router.push("/pages/auth/login");
         });
+
         console.log('Data inserted successfully!');
       } else {
         Swal.fire({
           title: "ล้มเหลว",
-          text: "รหัสผ่านไม่ตรงกัน",
+          text: "Failed to insert data.",
           icon: "error",
-          confirmButtonText: "ตลลง",
+          confirmButtonText: "ตกลง",
         });
         console.error('Failed to insert data.');
       }
@@ -60,7 +75,7 @@ export default function Register() {
         title: "ล้มเหลว",
         text: "Error inserting data:" + error,
         icon: "error",
-        confirmButtonText: "ตลลง",
+        confirmButtonText: "ตกลง",
       });
       console.error('Error inserting data:', error);
     }
@@ -76,8 +91,7 @@ export default function Register() {
       <h1 className="text-3xl">ลงทะเบียน</h1>
       <br />
       <form
-        // method="POST"
-        // action={`${basePath}/php/register.php`}
+        onSubmit={(event) => event.preventDefault()}
         className="bg-white shadow-md rounded-xl px-8 pt-6 pb-8 mb-4"
       >
         <div className="mb-4">
@@ -159,10 +173,7 @@ export default function Register() {
           </div>
         </div>
         <div className="mb-4">
-          <label
-            className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="username"
-          >
+          <label className="block text-gray-700 text-sm font-bold mb-2">
             Email
           </label>
           <input
@@ -176,7 +187,7 @@ export default function Register() {
           />
         </div>
         <div className="flex items-center justify-center mt-8">
-          <Button color="danger" onClick={onSubmit}>
+          <Button color="danger" type="submit" onClick={onSubmit}>
             สมัครสมาชิก
           </Button>
         </div>
