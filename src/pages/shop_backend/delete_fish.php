@@ -1,29 +1,16 @@
-<html>
+<?php
 
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <title></title>
-</head>
+require_once('../../core/config.php');
 
-<body>
+$deleteAddid = $_GET["add_id"];
+$sql = "DELETE FROM scheduling_fish WHERE id = '" . $deleteAddid . "' ";
 
-  <?php
+$query = mysqli_query($conn, $sql);
 
-  require_once('../../config/config.php');
-
-  $deleteAddid = $_GET["add_id"];
-  $sql = "DELETE FROM scheduling_fish WHERE add_id = '" . $deleteAddid . "' ";
-
-  $query = mysqli_query($conn, $sql);
-
-  if (mysqli_affected_rows($conn)) {
-    echo "ลบข้อมูลดังกล่าวออกจากระบบ เสร็จสมบูรณ์...";
-    echo "<meta http-equiv=\"Refresh\" content=\"1; URL=https://waraporn.cmtc.ac.th/testTrainingReserve/scheduling_course.php\">";
-    // echo "<meta http-equiv=\"Refresh\" content=\"1; URL=https://waraporn.cmtc.ac.th/testTrainingReserve/scheduling_course.php\">";
-  }
-  mysqli_close($conn);
-  ?>
-
-</body>
-
-</html>
+if (mysqli_affected_rows($conn)) {
+    echo '<script language="javascript">';
+    echo 'alert("Suscess to delete product!"); window.location = "dashboard.php";';
+    echo '</script>';
+}
+mysqli_close($conn);
+?>
