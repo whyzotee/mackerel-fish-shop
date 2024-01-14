@@ -1,97 +1,129 @@
+<?php
+session_start();
+if ($_SESSION['local_id'] == "") {
+  echo "login first!!!";
+  exit();
+}
+
+if ($_SESSION['local_status'] != "EMPLOYEE") {
+  echo "you not employee";
+  exit();
+}
+
+
+require_once('../../core/config.php');
+$member = "SELECT * FROM member WHERE id = '" . $_SESSION['local_id'] . "' ";
+$queryMem = mysqli_query($conn, $member);
+$memberData = mysqli_fetch_array($queryMem, MYSQLI_ASSOC);
+
+$editAddid = null;
+if (isset($_GET["add_id"])) {
+  $editAddid = $_GET["add_id"];
+}
+$sql = "SELECT * FROM scheduling_fish WHERE id = '" . $editAddid . "' ";
+$query = mysqli_query($conn, $sql);
+$row_edit = mysqli_fetch_array($query, MYSQLI_ASSOC);
+?>
+
 <html>
 
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <title>เพิ่มรายการคอร์สอบรม</title>
-  <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+  <link rel="icon" href="../../../assets/favicon.ico" />
+  <link rel="stylesheet" href="../../../styles.css">
+  <title>Add fish</title>
 </head>
 
 <body>
-
-  <div class="container">
-    <div class="row">
-      <div class="col-md-3"></div>
-      <div class="col-md-6"> <br>
-        <h4 align="center"> ฟอร์ม เพิ่มรายการปลา</h4>
-        <hr>
-        <form action="add_fish_db.php" method="POST" enctype="multipart/form-data" name="addprd"
-          class="form-horizontal">
-
-          <div class="form-group">
-            <div class="col-sm-12">
-              <p>ลำดับ</p>
-              <input type="text" name="add_id" id="add_id" class="form-control">
-            </div>
-          </div>
-
-          <div class="form-group">
-            <div class="col-sm-12">
-              <p>ชื่อคอร์สอบรม</p>
-              <input type="text" name="add_course" id="add_course" class="form-control">
-            </div>
-          </div>
-
-          <div class="form-group">
-            <div class="col-sm-12">
-              <p> รายละเอียดคอร์สอบรม </p>
-              <textarea name="add_detail" id="add_detail" class="form-control" rows="3"></textarea>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <div class="col-sm-12">
-              <p> ภาพสินค้า </p>
-              <input type="file" name="add_picture" id="add_picture" class="form-control">
-            </div>
-          </div>
-
-          <div class="form-group">
-            <div class="col-sm-12">
-              <p>ระยะเวลาดำเนินการ</p>
-              <input type="text" name="add_period" id="add_period" class="form-control">
-            </div>
-          </div>
-
-          <div class="form-group">
-            <div class="col-sm-12">
-              <p>สถานที่จัด</p>
-              <input type="text" name="add_locality" id="add_locality" class="form-control">
-            </div>
-          </div>
-
-          <div class="form-group">
-            <div class="col-sm-12">
-              <p>จำนวนผู้อบรม</p>
-              <input type="text" name="add_amount" id="add_amount" class="form-control" required
-                placeholder="จำนวนผู้อบรม">
-            </div>
-          </div>
-
-          <div class="form-group">
-            <div class="col-sm-12">
-              <p> ราคาคอร์สอบรม (บาท) </p>
-              <input type="text" name="add_expense" id="add_expense" class="form-control">
-            </div>
-          </div>
-
-          <button type="submit" class="btn btn-primary" name="btnadd">
-            <span class="glyphicon glyphicon-plus"></span> เพิ่มคอร์ส </button>
-
-          <a href="scheduling_course.php" class="btn btn-danger  active" role="button" aria-pressed="true"><span
-              class="glyphicon glyphicon-backward" aria-hidden="true"></span> ย้อนกลับ</a>
-
-        </form>
+  <main>
+    <nav class="flex justify-between p-4">
+      <a href="dashboard.php" class="flex gap-4 items-center cursor-pointer">
+        <img src="../../../assets/images/logo/logo_1.0.png" alt="logo" class="h-12" />
+        <h1 class="text-xl">Mackerel Fish Shop
+          <?php echo $memberData["role"]; ?>
+        </h1>
+      </a>
+      <div class="relative inline-block">
+        <button onclick="myFunction()" class="dropbtn flex gap-2 items-center px-8">
+          <img src="<?php echo $memberData["user_img"]; ?>" alt="profile_pic"
+            onerror="this.onerror=null;this.src='../../../assets/images/error_profile.png';"
+            class="h-10 w-10 rounded-full pointer-events-none">
+          <span class="font-medium text-[#303030] pointer-events-none">
+            <?php echo $memberData["username"]; ?>
+          </span>
+        </button>
+        <div id="myDropdown"
+          class="dropdown-content hidden absolute mt-4 bg-red-400 rounded-lg text-white flex-col w-full p-2 text-base">
+          <a href="dashboard.php" class="hover:bg-white hover:text-red-400 rounded-lg p-2 transition-colors">
+            ย้อนกลับ
+          </a>
+          <a href="../editprofile/edit_profile.php"
+            class="hover:bg-white hover:text-red-400 rounded-lg p-2 transition-colors">
+            แก้ไขข้อมูล
+          </a>
+          <a href="../auth/logout.php" class="hover:bg-white hover:text-red-400 rounded-lg p-2 transition-colors">
+            ออกจากระบบ
+          </a>
+        </div>
       </div>
-    </div>
-  </div>
-  <p align="center"></p>
 
-  <?php
-  mysqli_close($conn);
-  ?>
+      <script>
+        function myFunction() {
+          document.getElementById("myDropdown").classList.toggle("hidden");
+          document.getElementById("myDropdown").classList.toggle("flex");
+        }
+        window.onclick = function (event) {
+          if (!event.target.matches('.dropbtn')) {
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            var i;
+            for (i = 0; i < dropdowns.length; i++) {
+              var openDropdown = dropdowns[i];
+              if (!openDropdown.classList.contains('hidden')) {
+                openDropdown.classList.remove('flex');
+                openDropdown.classList.add('hidden');
+              }
+            }
+          }
+        }
+      </script>
+    </nav>
 
+    <form action="add_fish_db.php" enctype="multipart/form-data" name="formedit" method="POST"
+      class="h-[80vh] w-full flex flex-col gap-4 justify-center items-center text-[#303030]">
+      <span class="text-xl">Add fish</span>
+      <hr>
+      <div class="flex w-96">
+        <p class="w-48">Name</p>
+        <input type="text" name="fish_name" class="w-full border-2 rounded-lg p-2">
+      </div>
+      <div class="flex w-96">
+        <p class="w-48">Details</p>
+        <textarea type="text" name="fish_detail" class="w-full border-2 rounded-lg p-2" rows="3"></textarea>
+      </div>
+
+      <div class="flex w-96">
+        <p class="w-48">Image</p>
+        <input type="file" id="fish_image" name="fish_image" class="border-2 border-gray-600 rounded-lg p-2">
+      </div>
+      <div class="flex w-96">
+        <p class="w-48">Breed</p>
+        <input type="text" name="fish_familia" class="w-full border-2 rounded-lg p-2">
+      </div>
+      <div class="flex w-96">
+        <p class="w-48">Price</p>
+        <input type="text" name="fish_price" class="w-full border-2 rounded-lg p-2">
+      </div>
+      <div class="flex gap-4">
+        <button type="submit" name="submit"
+          class="bg-red-400 text-white hover:bg-red-500 rounded-lg p-2 transition-colors">เพิ่มสินค้า</button>
+        <a href="dashboard.php"
+          class="border-2 border-red-400 text-red-400 rounded-lg p-2 hover:bg-red-400 hover:text-white transition-colors">ย้อนกลับ
+        </a>
+      </div>
+    </form>
+  </main>
 </body>
 
 </html>

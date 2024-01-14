@@ -34,6 +34,7 @@ $result = mysqli_fetch_array($query, MYSQLI_ASSOC);
     <div class="relative inline-block">
       <button onclick="myFunction()" class="dropbtn flex gap-2 items-center px-8">
         <img src="<?php echo $result["user_img"]; ?>" alt="profile_pic"
+          onerror="this.onerror=null;this.src='../../../assets/images/error_profile.png';"
           class="h-10 w-10 rounded-full pointer-events-none">
         <span class="font-medium text-[#303030] pointer-events-none">
           <?php echo $result["username"]; ?>
@@ -41,8 +42,7 @@ $result = mysqli_fetch_array($query, MYSQLI_ASSOC);
       </button>
       <div id="myDropdown"
         class="dropdown-content hidden absolute mt-4 bg-red-400 rounded-lg text-white flex-col w-full p-2 text-base">
-        <a href="../shop_backend/dashboard.php"
-          class="hover:bg-white hover:text-red-400 rounded-lg p-2 transition-colors">
+        <a href="../info/info.php" class="hover:bg-white hover:text-red-400 rounded-lg p-2 transition-colors">
           ย้อนกลับ
         </a>
         <a href="../editprofile/edit_profile.php"
@@ -78,7 +78,11 @@ $result = mysqli_fetch_array($query, MYSQLI_ASSOC);
   <form name="form1" method="post" action="save_profile.php"
     class="h-[80vh] w-full flex flex-col gap-4 justify-center items-center text-[#303030]">
     <span class="text-xl">Edit profile</span>
-    <br>
+    <div class="m-auto">
+      <img src="<?php echo $result["user_img"]; ?>"
+        onerror="this.onerror=null;this.src='../../../assets/images/error_profile.png';" alt="userProfile"
+        class="h-32 rounded-full">
+    </div>
     <div class="flex w-96">
       <h1 class="w-56">uid :</h1>
       <h1 class="w-full">
@@ -123,7 +127,7 @@ $result = mysqli_fetch_array($query, MYSQLI_ASSOC);
     <div class="flex gap-4">
       <input type="submit" name="Submit" value="บันทึก"
         class="bg-red-400 text-white hover:bg-red-500 rounded-lg p-2 transition-colors">
-      <a href="../shop_backend/dashboard.php"
+      <a href="../info/info.php"
         class="border-2 border-red-400 text-red-400 rounded-lg p-2 hover:bg-red-400 hover:text-white transition-colors">
         ย้อนกลับ
       </a>

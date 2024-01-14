@@ -31,7 +31,7 @@ $row_edit = mysqli_fetch_array($query, MYSQLI_ASSOC);
 
 <body>
   <nav class="flex justify-between p-4">
-    <a href="#" class="flex gap-4 items-center cursor-pointer">
+    <a href="dashboard.php" class="flex gap-4 items-center cursor-pointer">
       <img src="../../../assets/images/logo/logo_1.0.png" alt="logo" class="h-12" />
       <h1 class="text-xl">Mackerel Fish Shop
         <?php echo $memberData["role"]; ?>
@@ -40,6 +40,7 @@ $row_edit = mysqli_fetch_array($query, MYSQLI_ASSOC);
     <div class="relative inline-block">
       <button onclick="myFunction()" class="dropbtn flex gap-2 items-center px-8">
         <img src="<?php echo $memberData["user_img"]; ?>" alt="profile_pic"
+          onerror="this.onerror=null;this.src='../../../assets/images/error_profile.png';"
           class="h-10 w-10 rounded-full pointer-events-none">
         <span class="font-medium text-[#303030] pointer-events-none">
           <?php echo $memberData["username"]; ?>
@@ -96,8 +97,8 @@ $row_edit = mysqli_fetch_array($query, MYSQLI_ASSOC);
     </div>
     <div class="flex w-96">
       <p class="w-48">Details</p>
-      <input type="text" name="fish_detail" class="w-full border-2 rounded-lg p-2"
-        value="<?php echo $row_edit['fish_detail']; ?>">
+      <textarea type="text" name="fish_detail" class="w-full border-2 rounded-lg p-2"
+        rows="3"><?php echo $row_edit['fish_detail']; ?></textarea>
     </div>
 
     <div class="flex w-96">

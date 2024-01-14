@@ -1,7 +1,6 @@
 <?php
 require_once('../../core/config.php');
 
-
 $filename = $_FILES['fish_image']['name'];
 $location = "../../../assets/images/upload/" . $filename;
 

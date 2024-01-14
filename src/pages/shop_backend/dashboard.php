@@ -19,6 +19,9 @@ $result = mysqli_fetch_array($query, MYSQLI_ASSOC);
 
 $select_schedfish = "SELECT * FROM scheduling_fish";
 $query_data = $conn->query($select_schedfish);
+
+$order_fish_query = "SELECT * FROM order_fish";
+$order_fish_result = $conn->query($order_fish_query);
 ?>
 
 <!DOCTYPE html>
@@ -89,7 +92,9 @@ $query_data = $conn->query($select_schedfish);
             <?php echo $result["name"]; ?>
         </h1>
         <div class="flex flex-col gap-4 items-center lg:flex-row">
-            <img src="<?php echo $result["user_img"]; ?>" alt="profile_pic" class="h-24 w-24 rounded-full">
+            <img src="<?php echo $result["user_img"]; ?>"
+                onerror="this.onerror=null;this.src='../../../assets/images/error_profile.png';" alt="profile_pic"
+                class="h-24 w-24 rounded-full">
             <div class="flex flex-col">
                 <span class="w-f">Username:
                     <?php echo $result["username"]; ?>
@@ -120,13 +125,22 @@ $query_data = $conn->query($select_schedfish);
         <div class="flex flex-col justify-center">
             <div class="flex justify-between py-8">
                 <lable class="text-xl">Mackerel fish table</lable>
-                <a href="add_fish.php" class="flex bg-blue-400 text-white p-2 rounded-lg">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                    </svg>
-                    เพิ่มข้อมูล
-                </a>
+                <div class="flex gap-4">
+                    <a href="order_fish.php"
+                        class="border-2 border-red-400 text-red-400 rounded-lg p-2 hover:bg-red-400 hover:text-white transition-colors">
+                        สถานะคำสั่งซื้อ (
+                        <?php echo $order_fish_result->num_rows; ?> )
+                    </a>
+
+                    <a href="add_fish.php"
+                        class="flex border-2 border-red-400 text-red-400 rounded-lg p-2 hover:bg-red-400 hover:text-white transition-colors">
+                        <svg xmlns=" http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                        </svg>
+                        เพิ่มข้อมูล
+                    </a>
+                </div>
             </div>
             <table class="w-full bg-red-50 rounded-xl">
                 <thead class="text-white bg-red-400">

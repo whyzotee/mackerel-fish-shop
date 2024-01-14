@@ -58,7 +58,7 @@ mysqli_close($conn);
                         ซื้อเลย!!!
                     </a>
                     <span class="text-white text-xl">และเรามี</span>
-                    <a href="pages/sticker_line/"
+                    <a href="src/pages/html/sticker_line/"
                         class="border-2 border-green-400 text-green-400 rounded-lg p-2 hover:bg-green-400 hover:text-white transition-colors">
                         สติ๊กเกอร์ไลน์
                     </a>
