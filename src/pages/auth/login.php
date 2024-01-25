@@ -50,10 +50,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			</a>
 			<div class="flex items-center gap-8 font-semibold">
 				<a href="../../../">หน้าหลัก</a>
-				<a href="#" class="bg-white text-[#252525] py-2 px-4 rounded-lg">เข้าสู่ระบบ</a>
+				<a href="../info/shop.php">สินค้า</a>
 				<a href="../html/workshop/">บทเรียน</a>
 				<a href="../html/docs/">ใบความรู้</a>
 				<a href="../html/sticker_line/">ซื้อสติ๊กเกอร์ไลน์</a>
+				<a href="#" class="bg-white text-[#252525] py-2 px-4 rounded-lg">เข้าสู่ระบบ</a>
+
 			</div>
 		</div>
 	</nav>

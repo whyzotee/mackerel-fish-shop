@@ -24,7 +24,7 @@ $result = mysqli_fetch_array($query, MYSQLI_ASSOC);
   <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
   <link rel="icon" href="../../../assets/favicon.ico" />
   <link rel="stylesheet" href="../../../styles.css">
-  <title>ผู้ดูแลระบบ การจัดการคอร์สอบรม</title>
+  <title>Order to review</title>
 </head>
 
 <body>

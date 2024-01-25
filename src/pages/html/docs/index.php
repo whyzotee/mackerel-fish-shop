@@ -31,14 +31,14 @@ mysqli_close($conn);
             </a>
             <div class="flex items-center gap-8 font-semibold">
                 <a href="../../../../">หน้าหลัก</a>
-                <?php if (!isset($result["username"])) {
-                    echo '<a href="../../auth/login.php">เข้าสู่ระบบ</a>';
-                } ?>
+                <a href="../../info/shop.php">สินค้า</a>
                 <a href="../workshop/">บทเรียน</a>
                 <a href="#" class="bg-white text-[#252525] py-2 px-4 rounded-lg">ใบความรู้</a>
                 <a href="../sticker_line/">ซื้อสติ๊กเกอร์ไลน์</a>
                 <?php if (isset($result["username"])) {
                     echo '<a href="../../info/info.php">' . $result["username"] . '</a>';
+                } else {
+                    echo '<a href="../../auth/login.php">เข้าสู่ระบบ</a>';
                 } ?>
             </div>
         </div>

@@ -1,30 +1,37 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-	require_once('../../core/config.php');
-
-	if (!$conn) {
-		header("Status: 404 Not Found");
-		die("ไม่สามารถเชื่อมต่อฐานข้อมูลได้ " . mysqli_connect_error());
-	}
-
 	$firstname = $_POST['firstname'];
 	$lastname = $_POST['lastname'];
-	$username = $_POST['username'];
-	$password = $_POST['password'];
+	$user = $_POST['username'];
+	$pass = $_POST['password'];
+	$passCon = $_POST['con_password'];
 
-	$sql = "INSERT INTO `member`( `name`, `lastname`, `username`, `password`, `role`) VALUES ('" . $firstname . "','" . $lastname . "', '" . $username . "','" . $password . "', 'CUSTOMER');";
-
-	if (mysqli_query($conn, $sql)) {
+	if ($pass != $passCon) {
 		echo '<script language="javascript">';
-		echo 'alert("Register complete"); window.location = "login.php";';
+		echo 'alert("Password not matched");';
 		echo '</script>';
 	} else {
-		echo '<script language="javascript">';
-		echo 'alert("Some error please try again");';
-		echo '</script>';
-	}
+		require_once('../../core/config.php');
 
-	mysqli_close($conn);
+		if (!$conn) {
+			header("Status: 404 Not Found");
+			die("ไม่สามารถเชื่อมต่อฐานข้อมูลได้ " . mysqli_connect_error());
+		}
+
+		$sql = "INSERT INTO `member`( `name`, `lastname`, `username`, `password`, `role`) VALUES ('" . $firstname . "','" . $lastname . "', '" . $user . "','" . $pass . "', 'CUSTOMER');";
+
+		if (mysqli_query($conn, $sql)) {
+			echo '<script language="javascript">';
+			echo 'alert("Register complete"); window.location = "login.php";';
+			echo '</script>';
+		} else {
+			echo '<script language="javascript">';
+			echo 'alert("Some error please try again");';
+			echo '</script>';
+		}
+
+		mysqli_close($conn);
+	}
 }
 ?>
 
@@ -48,10 +55,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			</a>
 			<div class="flex items-center gap-8 font-semibold">
 				<a href="../../../">หน้าหลัก</a>
-				<a href="#" class="bg-white text-[#252525] py-2 px-4 rounded-lg">สมัครสมาชิก</a>
+				<a href="../info/shop.php">สินค้า</a>
 				<a href="../html/workshop/">บทเรียน</a>
 				<a href="../html/docs/">ใบความรู้</a>
 				<a href="../html/sticker_line/">ซื้อสติ๊กเกอร์ไลน์</a>
+				<a href="#" class="bg-white text-[#252525] py-2 px-4 rounded-lg">สมัครสมาชิก</a>
 			</div>
 		</div>
 	</nav>

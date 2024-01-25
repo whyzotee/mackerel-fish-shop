@@ -31,17 +31,16 @@ mysqli_close($conn);
             </a>
             <div class="flex items-center gap-8 font-semibold">
                 <a href="#" class="bg-white text-[#252525] py-2 px-4 rounded-lg">หน้าหลัก</a>
-                <?php if (!isset($result["username"])) {
-                    echo '<a href="src/pages/auth/login.php">เข้าสู่ระบบ</a>';
-                } ?>
+                <a href="src/pages/info/shop.php">สินค้า</a>
                 <a href="src/pages/html/workshop/">บทเรียน</a>
                 <a href="src/pages/html/docs/">ใบความรู้</a>
                 <a href="src/pages/html/sticker_line/">ซื้อสติ๊กเกอร์ไลน์</a>
                 <?php if (isset($result["username"])) {
                     echo '<a href="src/pages/info/info.php">' . $result["username"] . '</a>';
+                } else {
+                    echo '<a href="src/pages/auth/login.php">เข้าสู่ระบบ</a>';
                 } ?>
             </div>
-
         </div>
     </nav>
     <main class="flex min-h-screen flex-col items-center justify-between bg-[#252525]">
