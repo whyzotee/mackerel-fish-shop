@@ -96,7 +96,9 @@ $result = mysqli_fetch_array($query, MYSQLI_ASSOC);
             <th class="text-center">Name</th>
             <th class="text-center">Price</th>
             <th class="text-center">Order Date</th>
-            <th class="text-center">Order by</th>
+            <th class="text-center">Order By</th>
+            <th class="text-center">Order Address</th>
+            <th class="text-center">Order Email</th>
             <th class="text-center rounded-r-xl">Is Sale</th>
           </tr>
         </thead>
@@ -122,6 +124,14 @@ $result = mysqli_fetch_array($query, MYSQLI_ASSOC);
 
               <td class="text-center">
                 <?php echo $row_showproduct['order_by']; ?>
+              </td>
+
+              <td class="text-center">
+                <?php echo $row_showproduct['order_addr']; ?>
+              </td>
+
+              <td class="text-center">
+                <?php echo $row_showproduct['order_email']; ?>
               </td>
 
               <td class="flex justify-center items-center p-3">

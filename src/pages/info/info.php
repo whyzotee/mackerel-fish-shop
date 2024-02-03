@@ -157,6 +157,8 @@ mysqli_close($conn);
                         <th class="text-center">Price</th>
                         <th class="text-center">Order Date</th>
                         <th class="text-center">Order By</th>
+                        <th class="text-center">Order Address</th>
+                        <th class="text-center">Order Email</th>
                         <th class="text-center">Status</th>
                         <th class="text-center rounded-r-xl">Cancel</th>
                     </tr>
@@ -174,15 +176,20 @@ mysqli_close($conn);
                                 <?php echo $row_showproduct['fish_type']; ?>
                             </td>
                             <td class="text-center">
-                                $
                                 <?php $all_cost += $row_showproduct['fish_price'];
-                                echo $row_showproduct['fish_price']; ?>
+                                echo $row_showproduct['fish_price']; ?> บาท
                             </td>
                             <td class="text-center">
                                 <?php echo $row_showproduct['order_date']; ?>
                             </td>
                             <td class="text-center">
                                 <?php echo $row_showproduct['order_by']; ?>
+                            </td>
+                            <td class="text-center">
+                                <?php echo $row_showproduct['order_addr']; ?>
+                            </td>
+                            <td class="text-center">
+                                <?php echo $row_showproduct['order_email']; ?>
                             </td>
                             <td class="text-center">
                                 <?php if ($row_showproduct['order_status'] == 0) {
@@ -207,8 +214,7 @@ mysqli_close($conn);
                         <td class="text-center"></td>
                         <td class="text-center"></td>
                         <td class="text-center">
-                            $
-                            <?php echo $all_cost ?>
+                            <?php echo $all_cost ?> บาท
                         </td>
                     </tr>
                 </tbody>

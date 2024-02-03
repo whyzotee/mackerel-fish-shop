@@ -20,21 +20,22 @@ switch ($method) {
         break;
     case 'POST':
         $data = json_decode(file_get_contents('php://input'), true);
-        $title = $data['order_buy'];
 
-        $sql = "INSERT INTO order_fish (fish_name, fish_type, fish_price, order_id, order_date, order_by, order_status) 
-                VALUES ('" . $fish_result["fish_name"] . "',
-                '" . $_POST["fish_type"] . "',
-                '" . $fish_result["fish_price"] . "',
-                '" . $result["id"] . "',
+        $sql = "INSERT INTO order_fish (fish_name, fish_type, fish_price, order_id, order_date, order_by, order_addr, order_email, order_status) 
+                VALUES ('" . $data["fish_name"] . "',
+                '" . $data['fish_type'] . "',
+                '" . $data["fish_price"] . "',
+                '" . $data["order_id"] . "',
                 '" . date("Y-m-d") . "',
-                '" . $result["name"] . " " . $result["lastname"] . "',
+                '" . $data["order_by"] . " ',
+                '" . $data["order_addr"] . " ',
+                '" . $data["order_email"] . " ',
                 '0')";
 
         $query = mysqli_query($conn, $sql);
 
         if ($query) {
-            echo json_encode(['message' => 'Book added successfully']);
+            echo json_encode(['message' => 'Finsh buy a fish']);
         } else {
             echo json_encode(['error' => 'fail to buy product']);
         }

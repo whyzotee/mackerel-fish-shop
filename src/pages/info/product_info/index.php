@@ -49,10 +49,51 @@ if (isset($_POST['order_buy'])) {
     <link rel="icon" href="../../../../assets/favicon.ico" />
     <link rel="stylesheet" href="../../../../styles.css">
     <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Document</title>
 </head>
 
 <body>
+    <div id="modal001" class="absolute h-screen w-full bg-black bg-opacity-50 z-50 opacity-0 invisible transition-all">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col bg-white p-4 rounded-lg">
+            <span class="text-xl">ยืนยันคำสั่งซื้อ</span>
+            <span id="fish_name" class="text-gray-600">รายการที่ซื้อ: </span>
+            <span id="fish_price" class="text-gray-600">ราคา: </span>
+            <label class="mt-2 text-gray-700 text-sm font-bold mb-2" htmlFor="username">
+                ชื่อผู้ซื้อ
+            </label>
+            <input
+                class="shadow appearance-none border rounded-xl w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="name_input" name="username" type="text" placeholder="Username" required />
+
+            <label class="mt-2 text-gray-700 text-sm font-bold mb-2" htmlFor="username">
+                ที่อยู่
+            </label>
+            <input
+                class="shadow appearance-none border rounded-xl w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="addr_input" name="username" type="text" placeholder="Address" required />
+
+            <label class="mt-2 text-gray-700 text-sm font-bold mb-2" htmlFor="username">
+                อีเมล
+            </label>
+            <input
+                class="shadow appearance-none border rounded-xl w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="email_input" name="username" type="text" placeholder="Email" required />
+            <br>
+            <div class="flex gap-4 w-full">
+                <button onclick="closeModal()"
+                    class="closeBtn w-1/2 p-2 bg-gray-400 hover:bg-gray-500 transition-colors text-white rounded-lg">
+                    ยกเลิก
+                </button>
+                <button
+                    onclick="confirmBuy('<?php echo $fish_result['fish_name'] ?>','<?php echo $fish_result['fish_price'] ?>','<?php echo $result['id'] ?>')"
+                    class="w-1/2 p-1 bg-red-400 hover:bg-red-500 transition-colors text-white rounded-lg">
+                    ซื้อเลย!
+                </button>
+            </div>
+        </div>
+    </div>
+
     <nav class="fixed w-full bg-black bg-opacity-50 backdrop-blur-xl z-50">
         <div class="max-w-7xl w-full m-auto flex justify-between items-center p-4 text-white font-semibold">
             <a href="../../../../" class="flex gap-4 items-center cursor-pointer">
@@ -77,12 +118,6 @@ if (isset($_POST['order_buy'])) {
         <div class=" w-full lg:w-1/2">
             <img src="../<?php echo $fish_result["fish_image"] ?>" alt="../<?php echo $fish_result["fish_image"] ?>"
                 class="h-96 w-full object-cover rounded-xl shadow-lg">
-            <div class="flex gap-4 mt-12 h-24">
-                <div class="h-full w-full bg-white shadow-lg rounded-lg">img more</div>
-                <div class="h-full w-full bg-white shadow-lg rounded-lg">img more</div>
-                <div class="h-full w-full bg-white shadow-lg rounded-lg">img more</div>
-                <div class="h-full w-full bg-white shadow-lg rounded-lg">img more</div>
-            </div>
         </div>
 
         <div class="w-full lg:w-1/2 flex flex-col justify-between">
@@ -120,12 +155,9 @@ if (isset($_POST['order_buy'])) {
                         class="border-2 border-red-400 py-1 px-3 rounded-lg hover:text-white hover:bg-red-400 transition-colors">ย่าง</button>
                 </div>
 
-                <form method="post">
-                    <input type="hidden" name="fish_type" id="fish_type" value="สด" autocomplete="off" />
-                    <input type="submit" name="order_buy" value="ซื้อเลย !!" autocomplete="off"
-                        class="w-full text-xl rounded-xl bg-red-400 text-white p-2 text-center hover:bg-red-500 transition-colors">
-                </form>
-
+                <input type="submit" name="order_buy" value="ซื้อเลย !!" autocomplete="off"
+                    onclick="showModal(`<?php echo $fish_result['fish_name'] ?>`,`<?php echo number_format((float) $fish_result["fish_price"] * 35.59, 2, '.', '') ?>`)"
+                    class="w-full text-xl rounded-xl bg-red-400 text-white p-2 text-center hover:bg-red-500 transition-colors cursor-pointer">
             </div>
         </div>
     </main>
@@ -142,21 +174,6 @@ if (isset($_POST['order_buy'])) {
                 activeButton.add("text-white");
                 activeButton.add("bg-red-400");
                 type = id.split("-")[1];
-
-                if (type == 0) {
-                    document.getElementById("fish_type").value = "สด";
-                } else if (type == 1) {
-                    document.getElementById("fish_type").value = "ต้ม";
-
-                } else if (type == 2) {
-                    document.getElementById("fish_type").value = "นึ่ง";
-
-                } else if (type == 3) {
-                    document.getElementById("fish_type").value = "ทอด";
-
-                } else if (type == 4) {
-                    document.getElementById("fish_type").value = "ย่าง";
-                }
             }
 
             for (let index = 0; index < 5; index++) {
@@ -170,10 +187,65 @@ if (isset($_POST['order_buy'])) {
                     button.classList.remove("bg-red-400");
                 }
             }
+        }
 
-            console.log(type);
-            let x = document.getElementById("fish_type").value;
-            console.log(x);
+        var modal = document.getElementById("modal001");
+        var fishName = document.getElementById("fish_name");
+        var fishPrice = document.getElementById("fish_price");
+
+        function showModal(name, price) {
+            modal.classList.remove("opacity-0");
+            modal.classList.remove("invisible");
+
+            fishName.innerHTML = `รายการที่ซื้อ: ${name}`;
+            fishPrice.innerHTML = `ราคา: ${price} บาท`;
+        }
+
+        function closeModal() {
+            modal.classList.add("opacity-0");
+            modal.classList.add("invisible");
+        }
+
+
+
+        function confirmBuy(fishName, price, id) {
+            let final_type;
+            if (type == 0) {
+                final_type = "สด";
+            } else if (type == 1) {
+                final_type = "ต้ม";
+            } else if (type == 2) {
+                final_type = "นึ่ง";
+            } else if (type == 3) {
+                final_type = "ทอด";
+            } else if (type == 4) {
+                final_type = "ย่าง";
+            }
+
+            let data = {
+                'fish_name': fishName,
+                'fish_type': final_type,
+                'fish_price': fishPrice.innerHTML.toString().split(" ")[1],
+                'order_id': id,
+                'order_by': document.getElementById("name_input").value,
+                'order_addr': document.getElementById("addr_input").value,
+                'order_email': document.getElementById("email_input").value,
+            }
+
+            fetch(`./buy_product.php`, {
+                method: "POST",
+                body: JSON.stringify(data)
+            }).then(async (res) => {
+                closeModal();
+                let result = await res.json();
+                if (result.message != null) {
+                    Swal.fire({
+                        title: "Good job!",
+                        text: result.message,
+                        icon: "success"
+                    }).then((res) => location.href = "../info.php");
+                }
+            });
         }
     </script>
 </body>

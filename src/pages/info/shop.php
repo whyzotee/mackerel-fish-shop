@@ -47,9 +47,6 @@ $query_data = $conn->query($select_schedfish);
         </div>
     </nav>
     <main class="flex pt-24 p-8 m-auto max-w-7xl text-[#303030]">
-        <div class="w-1/3">
-            <span class="text-xl">Filter</span>
-        </div>
         <div class="w-full flex flex-col justify-center">
             <lable class="text-xl">สินค้า</lable>
             <br>
